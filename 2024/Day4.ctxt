@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Day4
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=map\ i0\ j0
+comment2.target=int\ search1(char[][],\ int,\ int)
+comment3.params=map\ i0\ j0
+comment3.target=int\ search2(char[][],\ int,\ int)
+numComments=4
