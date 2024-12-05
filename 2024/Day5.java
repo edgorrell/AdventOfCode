@@ -1,8 +1,4 @@
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.regex.*;
-import java.lang.*;
-import java.util.Collections;
+import java.util.*;
 import java.io.*;
 
 public class Day5{
@@ -11,10 +7,8 @@ public class Day5{
         ArrayList<Pair> pairs = new ArrayList<Pair>();
         ArrayList<Integer> list;
         Pair pair;
-        char[][] map = new char[140][140];
-        String line, str, rex;
-        int num, num1, num2, total = 0;
-        boolean check;
+        String line;
+        int total = 0;
         
         while(scan.hasNext()){
             line = scan.nextLine();
@@ -87,10 +81,6 @@ public class Day5{
         public Pair(int num1, int num2){
             this.num1 = num1;
             this.num2 = num2;
-        }
-        
-        public String toString(){
-            return num1 + "|" + num2;
         }
     }
 }
