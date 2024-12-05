@@ -1,15 +1,12 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.regex.*;
 import java.io.*;
 
 public class Day4{
     public static void main(String[] args) throws IOException{
         Scanner scan = new Scanner(new File("day4.txt"));
         char[][] map = new char[140][140];
-        String line, str, rex;
-        int num, num1, num2, total = 0;
-        boolean check;
+        String line;
+        int num, total = 0;
         
         num = 0;
         while(scan.hasNext()){
@@ -58,17 +55,16 @@ public class Day4{
         //3+4
         int total = 0;
         
-    
-            try{
-                if(
-                 (map[i0 - 1][j0 - 1] == 'M' && map[i0 - 1][j0 + 1] == 'M' && map[i0 + 1][j0 - 1] == 'S' && map[i0 + 1][j0 + 1] == 'S') ||
-                 (map[i0 - 1][j0 - 1] == 'M' && map[i0 - 1][j0 + 1] == 'S' && map[i0 + 1][j0 - 1] == 'M' && map[i0 + 1][j0 + 1] == 'S') ||
-                 (map[i0 - 1][j0 - 1] == 'S' && map[i0 - 1][j0 + 1] == 'M' && map[i0 + 1][j0 - 1] == 'S' && map[i0 + 1][j0 + 1] == 'M') ||
-                 (map[i0 - 1][j0 - 1] == 'S' && map[i0 - 1][j0 + 1] == 'S' && map[i0 + 1][j0 - 1] == 'M' && map[i0 + 1][j0 + 1] == 'M')
-                ){
-                    total++;
-                }
-            } catch(Exception e){}
+        try{
+            if(
+             (map[i0 - 1][j0 - 1] == 'M' && map[i0 - 1][j0 + 1] == 'M' && map[i0 + 1][j0 - 1] == 'S' && map[i0 + 1][j0 + 1] == 'S') ||
+             (map[i0 - 1][j0 - 1] == 'M' && map[i0 - 1][j0 + 1] == 'S' && map[i0 + 1][j0 - 1] == 'M' && map[i0 + 1][j0 + 1] == 'S') ||
+             (map[i0 - 1][j0 - 1] == 'S' && map[i0 - 1][j0 + 1] == 'M' && map[i0 + 1][j0 - 1] == 'S' && map[i0 + 1][j0 + 1] == 'M') ||
+             (map[i0 - 1][j0 - 1] == 'S' && map[i0 - 1][j0 + 1] == 'S' && map[i0 + 1][j0 - 1] == 'M' && map[i0 + 1][j0 + 1] == 'M')
+            ){
+                total++;
+            }
+        } catch(Exception e){}
         
         return total;
     }
