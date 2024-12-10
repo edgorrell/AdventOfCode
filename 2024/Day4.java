@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Day4{
     public static void main(String[] args) throws IOException{
-        Scanner scan = new Scanner(new File("day4.txt"));
+        Scanner scan = new Scanner(new File("input.txt"));
         char[][] map = new char[140][140];
         String line;
         int num, total = 0;
@@ -26,6 +26,7 @@ public class Day4{
             }
         }
         System.out.println(total);
+        scan.close();
     }
     
     public static int search1(char[][] map, int i0, int j0){

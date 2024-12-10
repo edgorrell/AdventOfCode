@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Day5{
     public static void main(String[] args) throws IOException{
-        Scanner scan = new Scanner(new File("day5.txt"));
+        Scanner scan = new Scanner(new File("input.txt"));
         ArrayList<Pair> pairs = new ArrayList<Pair>();
         ArrayList<Integer> list;
         Pair pair;
@@ -18,8 +18,9 @@ public class Day5{
             );
             pairs.add(pair);
         }
+        scan.close();
         
-        scan = new Scanner(new File("day5-2.txt"));
+        scan = new Scanner(new File("input2.txt"));
         while(scan.hasNext()){
             list = new ArrayList<Integer>();
             line = scan.nextLine();
@@ -36,6 +37,7 @@ public class Day5{
         }
         
         System.out.println(total);
+        scan.close();
     }
     
     public static int fix(ArrayList<Pair> pairs, ArrayList<Integer> nums){
@@ -61,8 +63,7 @@ public class Day5{
     
     public static boolean checkNum(ArrayList<Pair> pairs, ArrayList<Integer> nums, int index){
         int num = nums.get(index);
-        boolean check = true;
-        
+                
         for(int i = 0; i < nums.size(); i++){
             for(Pair pair : pairs){
                 if(pair.num2 != num){continue;}

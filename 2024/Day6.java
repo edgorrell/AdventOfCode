@@ -4,7 +4,7 @@ import java.io.*;
 public class Day6{
     public static void main(String[] args) throws IOException{
         Scanner scan = new Scanner(new File("day6.txt"));
-        boolean[][] map = new boolean[130][130], map2, path;
+        boolean[][] map = new boolean[130][130], map2;
         String line;
         int total = 0, x0 = -1, y0 = -1, x, y, dir, steps;
         
@@ -83,5 +83,6 @@ public class Day6{
         }
         
         System.out.println(total);
+        scan.close();
     }
 }

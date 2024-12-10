@@ -4,7 +4,7 @@ import java.io.*;
 
 public class Day2{
     public static void main(String[] args) throws IOException{
-        Scanner scan = new Scanner(new File("day2.txt"));
+        Scanner scan = new Scanner(new File("input.txt"));
         String str;
         ArrayList<Integer> list = new ArrayList<Integer>(), list2;
         int num, total = 0;
@@ -48,5 +48,6 @@ public class Day2{
             if(check == true){total++;}
         }
         System.out.println(total);
+        scan.close();
     }
 }
