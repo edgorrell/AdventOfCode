@@ -4,7 +4,8 @@ import java.io.*;
 public class Day10 {
     public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(new File("input.txt"));
-        String line, str;
+        String line, str = "";
+        System.out.println(str);
         ArrayList<Point> list = new ArrayList<Point>(), q = new ArrayList<Point>();
         int[][] map = new int[58][60];
         Point p;
@@ -47,6 +48,7 @@ public class Day10 {
                 for (int i = 0; i < 4; i++) {
                     try {
                         Point test = new Point(p.x + xdif[i], p.y + ydif[i]);
+                        //pt1 add con if not in vis str
                         if (test.get(map) == p.get(map) + 1) {
                             str += test.toString();
                             test.prev += p.prev + 1;
@@ -64,8 +66,6 @@ public class Day10 {
                     }
                 }
                 if (check) {
-                    for(Point end : q){
-                    }
                     break;
                 }
 
