@@ -1,6 +1,5 @@
 import java.util.*;
 import java.io.*;
-import java.math.*;
 
 public class Day13 {
     public static void main(String[] args) throws IOException {
@@ -26,33 +25,92 @@ public class Day13 {
             };
 
             line = scan.nextLine();
-            long px = (long) Math.pow(10, 15) + Integer.parseInt(line.substring(line.indexOf("X=") + 2, line.indexOf(",")));
-            long py = (long) Math.pow(10, 15) + Integer.parseInt(line.substring(line.indexOf("Y=") + 2, line.length()));
+            long px = (long) Math.pow(10, 15)
+                    + Integer.parseInt(line.substring(line.indexOf("X=") + 2, line.indexOf(","))) + 1;
+            long py = (long) Math.pow(10, 15)
+                    + Integer.parseInt(line.substring(line.indexOf("Y=") + 2, line.length())) + 1;
 
-            // math stuff, found with desmos solve for a
-            MathContext mc = MathContext.DECIMAL128;
+            // bil, mil, thou, one
+            // 9,6,3,0
+            // brute force lol
+            int[] powA = new int[4];
+            int[] powB = new int[4];
 
-            BigDecimal det = new BigDecimal(a[1]).multiply(new BigDecimal(b[0])).subtract(new BigDecimal(a[0]).multiply(new BigDecimal(b[1])));
-            BigDecimal a1 = new BigDecimal(b[0]).multiply(new BigDecimal(py)).subtract(new BigDecimal(b[1]).multiply(new BigDecimal(px))).divideToIntegralValue(det);
-            BigDecimal b1 = new BigDecimal(px).subtract(a1.multiply(new BigDecimal(a[0]))).divideToIntegralValue(new BigDecimal(b[0]));
+            for (int i = 0; i < 20000; i++) {
+                for (int i2 = 0; i2 < 20000; i2++) {
+                    powA[3] = i;
+                    powB[3] = i2;
+                    if (checkNum(px, py, a, b, powA, powB)) {
+                        break;
+                    }
+                }
+            }
 
-            BigDecimal calcx = a1.multiply(new BigDecimal(px)).add(b1.multiply(new BigDecimal(px)));
-            BigDecimal calcy = a1.multiply(new BigDecimal(py)).add(b1.multiply(new BigDecimal(py)));
-            
-            if(
-                new BigDecimal(px).subtract(a1.multiply(new BigDecimal(a[0]))).remainder(new BigDecimal(b[0])).equals(BigDecimal.ZERO)
-            ){
-                System.out.println(num);
-                total += 3*a1.longValue()+b1.longValue();
+            for (int i = 0; i < 1000; i++) {
+                for (int i2 = 0; i2 < 1000; i2++) {
+                    powA[2] = i;
+                    powB[2] = i2;
+                    if (checkNum(px, py, a, b, powA, powB)) {
+                        break;
+                    }
+                }
+            }
+
+            for (int i = 0; i < 1000; i++) {
+                for (int i2 = 0; i2 < 1000; i2++) {
+                    powA[1] = i;
+                    powB[1] = i2;
+                    if (checkNum(px, py, a, b, powA, powB)) {
+                        break;
+                    }
+                }
+            }
+
+            long B = (long) Math.pow(10, 9), M = (long) Math.pow(10, 6), K = (long) Math.pow(10, 3);
+
+            for (int i = 0; i < 1000; i++) {
+                for (int i2 = 0; i2 < 1000; i2++) {
+                    powA[0] = i;
+                    powB[0] = i2;
+                    long px1 = (B * powA[3] * a[0] + B * powB[3] * b[0]) + (M * powA[2] * a[0] + M * powB[2] * b[0])
+                            + (K * powA[1] * a[0] + K * powB[1] * b[0]) + (powA[0] * a[0] + powB[0] * b[0]);
+                    long py1 = (B * powA[3] * a[1] + B * powB[3] * b[1]) + (M * powA[2] * a[1] + M * powB[2] * b[1])
+                            + (K * powA[1] * a[1] + K * powB[1] * b[1]) + (powA[0] * a[1] + powB[0] * b[1]);
+                    if (px1 == px && py1 == py) {
+                        total += 3 * (B * powA[3] + M * powA[2] + K * powA[1] + powA[0]);
+                        total += (B * powB[3] + M * powB[2] + K * powB[1] + powB[0]);
+                        System.out.println(num);
+                    }
+                }
             }
 
             System.out.println("----");
             try {
                 scan.nextLine();
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
 
         System.out.println(total);
         scan.close();
+    }
+
+    public static boolean checkNum(long tx, long ty, long[] b1, long[] b2, int[] pow1, int[] pow2) {
+        long B = (long) Math.pow(10, 9), M = (long) Math.pow(10, 6), K = (long) Math.pow(10, 3);
+
+        long px1 = (B * pow1[3] * b1[0] + B * pow2[3] * b2[0]) + (M * pow1[2] * b1[0] + M * pow2[2] * b2[0])
+                + (K * pow1[1] * b1[0] + K * pow2[1] * b2[0]) + (pow1[0] * b1[0] + pow2[0] * b2[0]);
+        long py1 = (B * pow1[3] * b1[1] + B * pow2[3] * b2[1]) + (M * pow1[2] * b1[1] + M * pow2[2] * b2[1])
+                + (K * pow1[1] * b1[1] + K * pow2[1] * b2[1]) + (pow1[0] * b1[1] + pow2[0] * b2[1]);
+        long px2 = (B * (pow1[3] + 1) * b1[0] + B * (pow2[3] + 1) * b2[0])
+                + (M * (pow1[2] + 1) * b1[0] + M * (pow2[2] + 1) * b2[0])
+                + (K * (pow1[1] + 1) * b1[0] + K * (pow2[1] + 1) * b2[0])
+                + ((pow1[0] + 1) * b1[0] + (pow2[0] + 1) * b2[0]);
+        long py2 = (B * (pow1[3] + 1) * b1[1] + B * (pow2[3] + 1) * b2[1])
+                + (M * (pow1[2] + 1) * b1[1] + M * (pow2[2] + 1) * b2[1])
+                + (K * (pow1[1] + 1) * b1[1] + K * (pow2[1] + 1) * b2[1])
+                + ((pow1[0] + 1) * b1[1] + (pow2[0] + 1) * b2[1]);
+
+        return px1 <= tx && px2 > tx && py1 <= tx && py2 > tx;
     }
 }
