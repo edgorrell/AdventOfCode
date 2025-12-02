@@ -8,8 +8,10 @@ public class Day2 {
     static long total = 0;
 
     public static void main(String[] args) throws IOException {
-        Scanner scan = new Scanner(new File("2025/input.txt"));
-        list = new ArrayList<Long>();
+        System.out.println(new File(".").getAbsolutePath());
+
+        Scanner scan = new Scanner(new File("2025\\input.txt"));
+        list = new ArrayList<>();
 
         line = scan.nextLine();
 
@@ -45,7 +47,7 @@ public class Day2 {
                     }
                 }
 
-                if(check && !list.contains(new Long(num))){
+                if(check && !list.contains(num)){
                     total += num;
                     list.add(num);
                     System.out.println(min + "|" + max + ":" + num);

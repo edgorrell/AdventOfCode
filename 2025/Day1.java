@@ -3,11 +3,9 @@ import java.io.*;
 
 public class Day1{
     public static void main(String[] args) throws IOException{
-        Scanner scan = new Scanner(new File("2025/input.txt"));
+        Scanner scan = new Scanner(new File("2025\\input.txt"));
         String str;
-        ArrayList list = new ArrayList<Integer>(), list2 = new ArrayList<String>();
-        int pos = 50, num = 0, sign = 0;
-        boolean check;
+        int pos = 50, num, sign = 0;
         
         int total = 0;
         while(scan.hasNext()){
