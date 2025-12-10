@@ -98,7 +98,6 @@ public class Day9 {
             }
             return true;
         }
-
         return false;
     }
 
