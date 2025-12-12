@@ -88,7 +88,7 @@ public class Day10 {
 
             this.state = 0;
             for (int i = 0; i < this.length; i++) {
-                this.state += (1 << (this.length - i - 1)) * (int) (state.charAt(i) == '#' ? 1 : 0);
+                this.state += (1 << i) * (int) (state.charAt(i) == '#' ? 1 : 0);
             }
         }
 
