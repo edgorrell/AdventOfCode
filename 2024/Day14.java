@@ -28,7 +28,7 @@ public class Day14 {
         }
 
         int num = 0;
-        while(num < 100){
+        while(true){
             num++;
             for(int j = 0; j < bots.size(); j++){
                 int[] bot = bots.get(j);
@@ -58,6 +58,7 @@ public class Day14 {
                     System.out.println();
                 }
                 System.out.println();
+                break;
             }
         }
 
